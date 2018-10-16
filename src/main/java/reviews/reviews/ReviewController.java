@@ -15,7 +15,13 @@ public class ReviewController {
 	@Resource
 	private ReviewRepository reviewRepo;
 	
-	@RequestMapping("review")
+	@Resource
+	private GenreRepository genreRepo;
+	
+	@Resource
+	private AuthorRepository authorRepo;
+	
+	@RequestMapping("/review")
 	public String findOneReview(@RequestParam(value="id")long id, Model model) throws ReviewNotFoundException {
 		Optional<Review> review = reviewRepo.findById(id);
 		if(review.isPresent()) {
@@ -25,8 +31,41 @@ public class ReviewController {
 		throw new ReviewNotFoundException();
 	}
 	
+	@RequestMapping("/show-reviews")
+	public String findAllReviews(Model model) {
+		model.addAttribute("reviews", reviewRepo.findAll());
+		return "reviews";
+	}
 	
-	
-	
+	@RequestMapping("/genre")
+	public String findOneGenre(@RequestParam(value="id")long id, Model model) throws GenreNotFoundException {
+		Optional<Genre>genre = genreRepo.findById(id);
+		if (genre.isPresent()) {
+			model.addAttribute("genres", genre.get());
+			model.addAttribute("reviews", reviewRepo.findByGenresContains(genre.get()));
+			return "genre";
+		}
+		throw new GenreNotFoundException();
+	}
+	@RequestMapping("/show-genres")
+	public String findAllGenres(Model model) {
+		model.addAttribute("genres", genreRepo.findAll());
+		return "genres";
+	}
+	@RequestMapping("/author")
+	public String findOneAuthor(@RequestParam(value="id")long id, Model model) throws AuthorNotFoundException  {
+		Optional<Author>author = authorRepo.findById(id);
+		if (author.isPresent()) {
+			model.addAttribute("authors", author.get());
+			model.addAttribute("reviews", reviewRepo.findByAuthorsContains(author.get()));
+			return "author";
+		}
+		throw new AuthorNotFoundException();
+	}
+	@RequestMapping("/show-authors")
+	public String findAllAuthors(Model model) {
+		model.addAttribute("authors", authorRepo.findAll());
+		return "authors";
+	}
 	
 }

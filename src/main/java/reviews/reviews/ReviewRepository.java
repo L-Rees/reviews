@@ -10,4 +10,6 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 
 	Collection<Review> findByGenresId(long id);
 
+	Object findByAuthorsContains(Author author);
+
 }
