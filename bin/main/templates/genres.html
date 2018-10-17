@@ -7,7 +7,10 @@
 </head>
 <body>
 	<div>
-		
+		<h1>All Genres</h1>
+		<div th:each= "genre: ${genres}">
+		<li><a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a></li>
+	</div>
 	</div>
 
 </body>

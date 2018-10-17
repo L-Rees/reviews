@@ -25,7 +25,9 @@ public class ReviewController {
 	public String findOneReview(@RequestParam(value="id")long id, Model model) throws ReviewNotFoundException {
 		Optional<Review> review = reviewRepo.findById(id);
 		if(review.isPresent()) {
-			model.addAttribute("reviews", review.get());
+			model.addAttribute("review", review.get());
+			model.addAttribute("genres", genreRepo.findByReviewsContains(review.get()));
+			model.addAttribute("author", authorRepo.findByReviewsContains(review.get()));
 			return "review";
 		}
 		throw new ReviewNotFoundException();
@@ -41,7 +43,7 @@ public class ReviewController {
 	public String findOneGenre(@RequestParam(value="id")long id, Model model) throws GenreNotFoundException {
 		Optional<Genre>genre = genreRepo.findById(id);
 		if (genre.isPresent()) {
-			model.addAttribute("genres", genre.get());
+			model.addAttribute("genre", genre.get());
 			model.addAttribute("reviews", reviewRepo.findByGenresContains(genre.get()));
 			return "genre";
 		}
@@ -56,8 +58,8 @@ public class ReviewController {
 	public String findOneAuthor(@RequestParam(value="id")long id, Model model) throws AuthorNotFoundException  {
 		Optional<Author>author = authorRepo.findById(id);
 		if (author.isPresent()) {
-			model.addAttribute("authors", author.get());
-			model.addAttribute("reviews", reviewRepo.findByAuthorsContains(author.get()));
+			model.addAttribute("author", author.get());
+			model.addAttribute("reviews", reviewRepo.findByAuthorContains(author.get()));
 			return "author";
 		}
 		throw new AuthorNotFoundException();

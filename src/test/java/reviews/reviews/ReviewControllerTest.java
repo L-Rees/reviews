@@ -77,7 +77,7 @@ public class ReviewControllerTest {
 	@Test
 	public void shouldPutSingleReviewIntoModel() throws Exception {
 		when(reviewRepo.findById(1L)).thenReturn(Optional.of(review));
-		mvc.perform(get("/review?id=1")).andExpect(model().attribute("reviews", is(review)));
+		mvc.perform(get("/review?id=1")).andExpect(model().attribute("review", is(review)));
 	}
 
 	@Test
@@ -119,7 +119,7 @@ public class ReviewControllerTest {
 	@Test
 	public void shouldPutSingleGenreIntoModel() throws Exception {
 		when(genreRepo.findById(3L)).thenReturn(Optional.of(genre));
-		mvc.perform(get("/genre?id=3")).andExpect(model().attribute("genres", genre));
+		mvc.perform(get("/genre?id=3")).andExpect(model().attribute("genre", genre));
 	}
 
 	@Test
@@ -162,7 +162,7 @@ public class ReviewControllerTest {
 	@Test
 	public void shouldPutSingleAuthorIntoModel() throws Exception {
 		when(authorRepo.findById(3L)).thenReturn(Optional.of(author));
-		mvc.perform(get("/author?id=3")).andExpect(model().attribute("authors", author));
+		mvc.perform(get("/author?id=3")).andExpect(model().attribute("author", author));
 	}
 
 	@Test

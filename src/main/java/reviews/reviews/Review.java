@@ -7,10 +7,9 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-
 
 
 @Entity
@@ -21,6 +20,8 @@ public class Review {
 	private long id;
 	
 	private String title;
+	
+	@Lob
 	private String review;
 	
 	@ManyToMany
@@ -28,11 +29,16 @@ public class Review {
 	
 	@ManyToOne
 	private Author author;
+
+	private String imageUrl;
 	
 	public Author getAuthor() {
 		return author;
 	}
 	
+	public String getImageUrl() {
+		return imageUrl;
+	}
 	
 	public String getTitle(){
 		return title;
@@ -50,9 +56,10 @@ public class Review {
 	public Review() {
 		
 	}
-	public Review(String title, String review, Genre...genres) {
+	public Review(String title, String review, String imageUrl, Genre...genres) {
 		this.title = title;
-		this.review = review;		
+		this.review = review;
+		this.imageUrl = imageUrl;
 		this.genres = new HashSet<>(Arrays.asList(genres));
 	}
 	@Override

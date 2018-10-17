@@ -6,8 +6,9 @@
 	<title>A Genre</title>
 </head>
 <body>
-	<div>
-		
+	<h1 th:text="${genre.name}"></h1>
+	<div th:each= "review: ${reviews}">
+		<li><a th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a></li>
 	</div>
 
 </body>

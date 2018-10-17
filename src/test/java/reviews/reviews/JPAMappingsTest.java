@@ -60,7 +60,7 @@ public class JPAMappingsTest {
 
 	@Test
 	public void shouldSaveAndLoadReview() {
-		Review review = new Review("title", "review");
+		Review review = new Review("title", "review", "url");
 		review = reviewRepo.save(review);
 		long reviewId = review.getId();
 
@@ -74,7 +74,7 @@ public class JPAMappingsTest {
 
 	@Test
 	public void shouldGenerateReviewId() {
-		Review review = reviewRepo.save(new Review("title", "review"));
+		Review review = reviewRepo.save(new Review("title", "review","url"));
 		long reviewId = review.getId();
 
 		entityManager.flush();
@@ -86,7 +86,7 @@ public class JPAMappingsTest {
 	public void shouldEstablishReviewToGenreRelationship() {
 		Genre sf = genreRepo.save(new Genre("science fiction"));
 		Genre fan = genreRepo.save(new Genre("fantasy"));
-		Review review = new Review("fancy book title", "review", sf, fan);
+		Review review = new Review("fancy book title", "review","url", sf, fan);
 		review = reviewRepo.save(review);
 		long reviewId = review.getId();
 		entityManager.flush();
@@ -118,8 +118,8 @@ public class JPAMappingsTest {
 
 	@Test
 	public void shouldEstablishReviewToAuthorRelationship() {
-		Review book1 = reviewRepo.save(new Review("book1 title", "book1 review"));
-		Review book2 = reviewRepo.save(new Review("book2 title", "book2 review"));
+		Review book1 = reviewRepo.save(new Review("book1 title", "book1 review", "url"));
+		Review book2 = reviewRepo.save(new Review("book2 title", "book2 review", "url"));
 		Author author = authorRepo.save(new Author("author name", book1, book2));
 		long authorId = author.getId();
 		entityManager.flush();
@@ -132,8 +132,8 @@ public class JPAMappingsTest {
 	@Test
 	public void shouldFindReviewsForGenre() {
 		Genre sf = genreRepo.save(new Genre("science fiction"));
-		Review book1 = reviewRepo.save(new Review("book1 title", "book1 review", sf));
-		Review book2 = reviewRepo.save(new Review("book2 title", "book2 review", sf));
+		Review book1 = reviewRepo.save(new Review("book1 title", "book1 review","url", sf));
+		Review book2 = reviewRepo.save(new Review("book2 title", "book2 review","url", sf));
 		entityManager.flush();
 		entityManager.clear();
 		Collection<Review> reviewsForGenre = reviewRepo.findByGenresContains(sf);
@@ -144,8 +144,8 @@ public class JPAMappingsTest {
 	public void shouldFindReviewsByGenreId() {
 		Genre sf = genreRepo.save(new Genre("science fiction"));
 		long genreId = sf.getId();
-		Review book1 = reviewRepo.save(new Review("book1 title", "book1 review", sf));
-		Review book2 = reviewRepo.save(new Review("book2 title", "book2 review", sf));
+		Review book1 = reviewRepo.save(new Review("book1 title", "book1 review","url", sf));
+		Review book2 = reviewRepo.save(new Review("book2 title", "book2 review","url", sf));
 		entityManager.flush();
 		entityManager.clear();
 		Collection<Review> reviewsForGenre = reviewRepo.findByGenresId(genreId);
