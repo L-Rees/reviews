@@ -14,8 +14,12 @@
 			<header>
 				<img class="book-image" th:src="${review.imageUrl}">
 				<h2 class="book-title" th:text = "${review.title}">A review</h2>
-					<h3 th:text="${author.name}"></h3>
-					<div th:each = "genre: ${genres}">
+				<h2>
+					<a th:href="@{/author(id=${author.id})}" th:text="${author.name}"></a>
+				</h2>
+					
+					
+					<div th:each= "genre: ${genres}">
 						<h2>
 							<a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a>
 						</h2>
