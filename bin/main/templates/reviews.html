@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/layout.css">
+<link href="https://fonts.googleapis.com/css?family=Share+Tech|Share" rel="stylesheet">
 <head>
 	<title>Lisa's Book Reviews</title>
 </head>
 <body>
-	<header>
+	<header id="header">
 		<h1>Lisa Reads: Reviews</h1>
 		<p>A few of the books I've read kind of recently</p>
+		<nav>
+			<ul>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-authors">All Authors</a>
+				</li>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-genres">All Genres</a>
+				</li>
+			</ul>
+		</nav>
 	</header>
-	<div th:each= "review: ${reviews}">
-		<li><a th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a></li>
-	</div>
+	<h2>All Book Reviews</h2>
+	<section class="reviews">
+		<div th:each= "review: ${reviews}">
+			<img class="book-image" th:src="${review.imageUrl}">
+			<p><a th:href="@{/review(id=${review.id})}" th:text="${review.title}" class="book-title"></a></p>
+		</div>
+	</section>
+
 </body>
 </html>

@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/layout.css">
+<link href="https://fonts.googleapis.com/css?family=Share+Tech|Share" rel="stylesheet">
 
 <head>
 	<title th:text="${review.title}">A review</title>
 </head>
 <body>
-	<header>
+	<header id="header">
 	<h1>Lisa Reads</h1>
+	<nav>
+		<ul>
+			<li>
+				<a class="nav-link" href="http://localhost:8080/show-reviews">All Reviews</a>
+			</li>
+			<li>
+				<a class="nav-link" href="http://localhost:8080/show-genres">All Genres</a>
+			</li>
+			<li>
+				<a class="nav-link" href="http://localhost:8080/show-authors">All Authors</a>
+			</li>
+		</ul>
+		</nav>
 	</header>
 	<main>
 		<article>
-			<header>
-				<img class="book-image" th:src="${review.imageUrl}">
-				<h2 class="book-title" th:text = "${review.title}">A review</h2>
-				<h2>
-					<a th:href="@{/author(id=${author.id})}" th:text="${author.name}"></a>
-				</h2>
-					
-					
-					<div th:each= "genre: ${genres}">
-						<h2>
-							<a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a>
-						</h2>
-					</div>
-			</header>
-				<p th:text = "${review.review}"></p>
+			<img class="book-image" th:src="${review.imageUrl}">
+			<section class="review-body">
+				<h2>Title</h2>
+					<h3 class="book-title" th:text = "${review.title}"></h3>
+				<h2>Author</h2>
+					<h3><a class="author-name" th:href="@{/author(id=${author.id})}" th:text="${author.name}"></a></h3>
+				<h2>Genres</h2>
+				<div th:each= "genre: ${genres}">
+					<h3><a class="genre-list-item" th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a></h3>
+				</div>
+			
+			<h2>My Take On It</h2>
+				<p class="review" th:utext = "${review.review}"></p>
+			</section>
 		</article>
 	</main>
-	<nav>
-		<a href="http://localhost:8080/show-reviews">Back to main</a>
-	</nav>
+	
 </body>
 
 </html>

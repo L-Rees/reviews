@@ -2,12 +2,27 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/layout.css">
+<link href="https://fonts.googleapis.com/css?family=Share+Tech|Share" rel="stylesheet">
 <head>
 	<title>All Authors</title>
 </head>
 <body>
+	<header id="header">
+		<h1>All Authors</h1>
+		<nav>
+			<ul>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-reviews">All Reviews</a>
+				</li>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-genres">All Genres</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
 	<div th:each="author: ${authors}">
-		<li><a th:href="@{/author(id=${author.id})}" th:text="${author.name}"></a></li>
+		<h3><a th:href="@{/author(id=${author.id})}" th:text="${author.name}"></a></h3>
 	</div>
 
 </body>

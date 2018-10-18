@@ -2,18 +2,37 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/layout.css">
+<link href="https://fonts.googleapis.com/css?family=Share+Tech|Share" rel="stylesheet">
 <head>
 	<title th:text="${author.name}">An Author</title>
 </head>
 <body>
+	<header id="header">
+		<h1 th:text="${author.name}">author name</h1>
+		<nav>
+			<ul>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-reviews">All Reviews</a>
+				</li>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-genres">All Genres</a>
+				</li>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-authors">All Authors</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
 	
 		<h2 th:text="${author.name}"></h2>
+		<h3>Books by this author</h3>
 			<div th:each= "review: ${author.reviews}">
 				<ul>
-					<li><a th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a></li>
+					<li><a class="book-title" th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a></li>
 				</ul>
 			</div>
-		</h2>
+		
 
 
 </body>

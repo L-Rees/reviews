@@ -2,13 +2,32 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/layout.css">
+
+<link href="https://fonts.googleapis.com/css?family=Share+Tech|Share" rel="stylesheet">
 <head>
-	<title>A Genre</title>
+	<title th:text="${genre.name}">A Genre</title>
 </head>
 <body>
-	<h1 th:text="${genre.name}"></h1>
+	<header id="header">
+		<h1 th:text="${genre.name}"></h1>
+		<nav>
+			<ul>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-reviews">All Reviews</a>
+				</li>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-genres">All Genres</a>
+				</li>
+				<li>
+					<a class="nav-link" href="http://localhost:8080/show-authors">All Authors</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<h2>Books in this genre</h2>
 	<div th:each= "review: ${reviews}">
-		<li><a th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a></li>
+		<h3><a th:href="@{/review(id=${review.id})}" th:text="${review.title}" class="book-title"></a></h3>
 	</div>
 
 </body>
