@@ -29,14 +29,14 @@ public class ReviewPopulator implements CommandLineRunner {
 		Genre fiction = genreRepo.save(new Genre("fiction"));
 
 		Review orphanKeeper = reviewRepo.save(new Review("The Orphan Keeper",
-				"Nice story and all, but the writing is terrible. An editor really needed to fix this. \r\n"
-						+ "AS A SINGLE EXAMPLE from page 199, filled with things put in to be a fancy writer:\r\n"
-						+ "Fred was reading on the couch when Linda burst in. \"I have news,\" she announced, but in lieu of eager eyes, she was packing worry.\r\n"
-						+ "Fred lowered his newspaper.\r\n" + "\"I quit my job,\" she said.\r\n"
-						+ "Her words drained shamefully onto the carpet. She looked as if she were admitting guilt to capital murder.\r\n"
-						+ "Fred arched forward, cupped his ears. She loved her job. He must have misunderstood.\r\n"
-						+ "\"Say what?\"\r\n"
-						+ "If he sounded gruff, he didn't mean it. His tone, like his face, often wore its angry coat. It was more comfortable.",
+				"Nice story and all, but the writing is terrible. An editor really needed to fix this. <br/>"
+						+ "AS A SINGLE EXAMPLE from page 199, filled with things put in to be a fancy writer:<br/><blockquote>"
+						+ "Fred was reading on the couch when Linda burst in. \"I have news,\" she announced, but in lieu of eager eyes, she was packing worry.<br/>"
+						+ "Fred lowered his newspaper.\r\n" + "\"I quit my job,\" she said.<br/>"
+						+ "Her words drained shamefully onto the carpet. She looked as if she were admitting guilt to capital murder.<br/>"
+						+ "Fred arched forward, cupped his ears. She loved her job. He must have misunderstood.<br/>"
+						+ "\"Say what?\"<br/>"
+						+ "If he sounded gruff, he didn't mean it. His tone, like his face, often wore its angry coat. It was more comfortable.</blockquote>",
 				"/images/orphanKeeper.jpg", fiction));
 		Review womanWindow = reviewRepo.save(new Review("The Woman in the Window",
 				"It's good that the narrator/main character is so into Hitchcock movies and noirs that it becomes a plot point, because the story is like Vertigo and Rear Window and Gaslight in particular. It's a not terribly deep but pretty entertaining thriller.\r\n"

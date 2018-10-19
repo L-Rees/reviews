@@ -1,14 +1,17 @@
+article{
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+}
+.book{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 #header {
 	display: flex;
 	flex-direction: column;
 	
 }
-.reviews {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 1em;
-}
-
 nav ul{
 	display: flex;
 	
@@ -16,10 +19,12 @@ nav ul{
 nav li {
 	display: flex;
 }
-
-article{
+.reviews {
 	display: grid;
-	grid-template-columns: 1fr 3fr;
-	
-
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 1em;
 }
+
+
+
+
