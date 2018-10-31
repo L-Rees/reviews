@@ -39,6 +39,7 @@ public class ReviewController {
 		return "reviews";
 	}
 	
+	
 	@RequestMapping("/genre")
 	public String findOneGenre(@RequestParam(value="id")long id, Model model) throws GenreNotFoundException {
 		Optional<Genre>genre = genreRepo.findById(id);

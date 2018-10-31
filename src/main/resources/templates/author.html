@@ -29,7 +29,7 @@
 	
 		<h2 th:text="${author.name}"></h2>
 		<h3>Books by this author</h3>
-			<div th:each= "review: ${author.reviews}">
+			<div th:each= "review: ${reviews}">
 				<ul>
 					<li><a class="book-title" th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a></li>
 				</ul>

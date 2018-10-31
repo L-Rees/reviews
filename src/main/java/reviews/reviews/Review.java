@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Review {
@@ -25,9 +27,11 @@ public class Review {
 	@Lob
 	private String reviewText;
 	
+	@JsonIgnore
 	@ManyToMany
 	private Collection<Genre> genres;
 	
+	@JsonIgnore
 	@ManyToOne
 	private Author author;
 	

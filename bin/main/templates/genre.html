@@ -27,7 +27,7 @@
 		</nav>
 	</header>
 	<h2>Books in this genre</h2>
-	<div th:each= "review: ${reviews}">
+	<div th:each= "review: ${genre.reviews}">
 		<h3><a th:href="@{/review(id=${review.id})}" th:text="${review.title}" class="book-title"></a></h3>
 	</div>
 

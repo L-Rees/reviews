@@ -7,9 +7,11 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-
 import javax.persistence.OneToMany;
+
+
+
+
 
 @Entity
 public class Author {
@@ -20,6 +22,7 @@ public class Author {
 	
 	private String name;
 
+	
 	@OneToMany
 	private Collection<Review> reviews;
 	

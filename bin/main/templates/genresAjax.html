@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Genres Page</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Genres Page</h1>
+        </header>
+        <div>
+            <section class="add-genre">
+                <input type="text"/>
+                <button>Submit Genre</button>
+            </section>
+            <section class="remove-genre">
+                <input type="text"/>
+                <button>Remove Genre</button>
+            </section>
+
+            <section class="genres-list">
+                <h2>Current Genres</h2>
+                <ul>
+                    <li th:if="${genres.size() ==0}">There are currently no genres</li>
+                    <li th:if="${genres.size() !=0}" th:each="genre: ${genres}">
+                        <a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+
+    </div>
+
+<script src="./js/server-requests.js"></script>
+</body>
+</html>

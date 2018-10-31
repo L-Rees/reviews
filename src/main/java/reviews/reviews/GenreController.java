@@ -6,7 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -53,13 +55,36 @@ public class GenreController {
 		
 		return "redirect:/review?id=" + reviewId;
 	}
-	//add genres with AJAX
+	//show genres with Java and Thymeleaf
 	@RequestMapping("/all-genres-ajax")
 	public String showAllGenres(Model model) {
 		model.addAttribute("genres", genreRepo.findAll());
 		return "genresAjax";
 	}
+	//use ajax to add genres to the database
+	@RequestMapping(path="/genres/{genreName}", method = RequestMethod.POST)
+	public String AddGenre(@PathVariable String genreName, Model model) {
+		Genre genreToAdd = genreRepo.findByNameIgnoreCaseLike(genreName);
+		if(genreToAdd == null) {
+			genreToAdd = new Genre(genreName);
+			genreRepo.save(genreToAdd);
+		}
+		model.addAttribute("genres", genreRepo.findAll());
+		return "partials/genres-list-added";
+	}
 	
-	
-	
+	//Use ajax to remove genres from the database
+	@RequestMapping(path="/genres/remove/{genreName}", method=RequestMethod.POST)
+	public String RemoveGenre(@PathVariable String genreName, Model model) {
+		Genre genreToDelete = genreRepo.findByNameIgnoreCaseLike(genreName);
+		if (genreRepo.findByNameIgnoreCaseLike(genreName) != null) {
+			for(Review review: genreToDelete.getReviews()) {
+				review.removeGenre(genreToDelete);
+				reviewRepo.save(review);
+			}
+		}
+		genreRepo.delete(genreToDelete);
+		model.addAttribute("genres", genreRepo.findAll());
+		return "partials/genres-list-removed";
+	}
 }

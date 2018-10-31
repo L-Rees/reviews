@@ -6,4 +6,6 @@ public interface AuthorRepository extends CrudRepository<Author, Long> {
 
 	Author findByReviewsContains(Review review);
 
+	Author findByNameIgnoreCaseLike(String authorName);
+
 }
