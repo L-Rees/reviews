@@ -20,8 +20,7 @@ public class ReviewPopulator implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		Genre sf = genreRepo.save(new Genre("science fiction"));
-		Genre fantasy = genreRepo.save(new Genre("fantasy"));
-		Genre steampunk = genreRepo.save(new Genre("steampunk"));
+		
 		Genre memoir = genreRepo.save(new Genre("memoir"));
 		Genre nonfiction = genreRepo.save(new Genre("non-fiction"));
 		Genre mystery = genreRepo.save(new Genre("mystery"));
@@ -55,7 +54,8 @@ public class ReviewPopulator implements CommandLineRunner {
 		Review artemis = reviewRepo.save(new Review("Artemis",
 				"A fun-ish romp, but I didn't buy the protagonist as a woman. Take away the male characters' lust for her, the sex jokes and there would be nothing to make her female. She felt like a teenage boy. Also, there were very few female characters in the book, and none of them were Jazz's friends.",
 				"/images/artemis.jpg", sf));
-		Review eloquence = reviewRepo.save(new Review("The Elements of Eloquence: How to Turn the Perfect English Phrase",
+		Review eloquence = reviewRepo.save(new Review(
+				"The Elements of Eloquence: How to Turn the Perfect English Phrase",
 				"From the chapter on Hyperbation (putting words in an odd order):\r\n"
 						+ "\". . .adjectives in English absolutely have to be in this order: opinion-size-age-shape-colour-origin-material-purpose-Noun. So you can have a lovely little old rectangular green French silver whittling knife. But if you mess with that word order in the slightest you'll sound like a maniac. [. . . ] There are other rules that everybody obeys without noticing. Have you ever heard that patter-pitter of tiny feet? Or the dong-ding of a bell? Or hop-hip music? That's because, when you repeat a word with a different vowel, the order is always I A O. Bish bash bosh. So politicians may flip-flop, but they can never flop-flip.\"\r\n"
 						+ "Mark Forsyth blows my mind for the thousandth time. ",
@@ -71,22 +71,22 @@ public class ReviewPopulator implements CommandLineRunner {
 				"Astronaut Mark Watney accidentally gets marooned on Mars when his crewmates believe he's dead in an emergency that forces them to abort their mission. Mark is resourceful, intelligent, well-trained by NASA, and possessed of a goofy sense of humor. He has to figure out how to survive, how to commuicate with Earth, and how to get back home. The details are astounding, and it really shows that the author knows the ins and outs of manned spaceflight.",
 				"/images/martian.jpg", sf));
 
-		Author cWright =new Author("Camron Wright", orphanKeeper);
-		cWright =  authorRepo.save(cWright);
-		Author jLawson =new Author("Jenny Lawson", letsPretend, furiouslyHappy);
+		Author cWright = new Author("Camron Wright", orphanKeeper);
+		cWright = authorRepo.save(cWright);
+		Author jLawson = new Author("Jenny Lawson", letsPretend, furiouslyHappy);
 		jLawson = authorRepo.save(jLawson);
 		Author aFinn = new Author("A.J. Finn", womanWindow);
 		aFinn = authorRepo.save(aFinn);
 		Author mForsyth = new Author("Mark Forsyth", eloquence);
-		mForsyth =  authorRepo.save(mForsyth);
+		mForsyth = authorRepo.save(mForsyth);
 		Author jRonson = new Author("Jon Ronson", psychopathTest);
-		jRonson =  authorRepo.save(jRonson);
+		jRonson = authorRepo.save(jRonson);
 		Author mOrtberg = new Author("Mallory Ortberg", janeTexts);
 		mOrtberg = authorRepo.save(mOrtberg);
-		Author dPreston =new Author("Douglas Preston", monkeyGod);
+		Author dPreston = new Author("Douglas Preston", monkeyGod);
 		dPreston = authorRepo.save(dPreston);
 		Author aWeir = new Author("Andy Weir", artemis, martian);
-		aWeir =  authorRepo.save(aWeir);
+		aWeir = authorRepo.save(aWeir);
 	}
 
 }

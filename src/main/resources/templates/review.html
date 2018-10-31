@@ -38,11 +38,47 @@
 				<div th:each= "genre: ${genres}">
 					<h3><a class="genre-list-item" th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a></h3>
 				</div>
+				<form method="POST">
+					<input name="reviewId" type="hidden" th:value="${review.id}"/>
+					<input name="name" type="text">
+					<button th:formaction="@{/add-genre}">add tag with html forms</button>
+				</form>
+				<form method="POST">
+					<input name="reviewId" type="hidden" th:value="${review.id}"/>
+					<ul>
+						<li th:each="genre: ${genres}"><span th:text="${genre.name}"></span>
+						<button id="x" name="genreId" th:value="${genre.id}" th:formaction="@{/remove-genre-button}">&times;</button></li>
+					</ul>
+				</form>
 			
 			<h2>My Take On It</h2>
-				<p class="review" th:utext = "${review.review}"></p>
+				<p class="review" th:utext = "${review.reviewText}"></p>
 			</section>
 		</article>
+		<section id="comments">
+			<div class="add-comment">
+				<form method="POST">
+					<section>
+						<label>Enter your name</label>
+						<input type="text" name="commentAuthor"/>
+					</section>
+					<section>
+						<label>What's on your mind?</label>
+						<input type="text" name="commentText"/>
+					</section>
+					<section>
+						<input type="hidden" th:value="${review.id}" name="reviewId"/>
+					</section>
+					<section>
+						<button th:formaction= "@{/add-comment}">Add Comment</button>
+					</section>
+				</form>
+			</div>
+			<div th:each="comment: ${review.comments}">
+				<h4 th:text="${comment.commentAuthor}"></h4>
+				<p th:text="${comment.commentText}"></p>
+			</div>
+		</section>
 	</main>
 	
 </body>

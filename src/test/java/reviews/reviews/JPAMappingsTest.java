@@ -28,7 +28,10 @@ public class JPAMappingsTest {
 
 	@Resource
 	private AuthorRepository authorRepo;
-
+	
+	@Resource
+	private CommentRepository commentRepo;
+	
 	@Resource
 	private TestEntityManager entityManager;
 
@@ -151,5 +154,37 @@ public class JPAMappingsTest {
 		Collection<Review> reviewsForGenre = reviewRepo.findByGenresId(genreId);
 		assertThat(reviewsForGenre, containsInAnyOrder(book1, book2));
 	}
-
+	@Test
+	public void shouldHaveTwoCommentsOnOneReview() {
+		Genre sf = genreRepo.save(new Genre("science fiction"));
+		Review book1 = reviewRepo.save(new Review("book1 title", "book1 review","url", sf));
+		Author author = authorRepo.save(new Author("author name", book1));
+		long reviewId = book1.getId();
+		Comment testComment1 = new Comment("comment author", book1, "comment text");
+		testComment1 = commentRepo.save(testComment1);
+		long testComment1Id = testComment1.getId();
+		Comment testComment2 = new Comment("comment author2", book1, "comment2 text");
+		testComment2 = commentRepo.save(testComment2);
+		long testComment2Id = testComment2.getId();
+		entityManager.flush();
+		entityManager.clear();
+		Iterable<Comment> comments = commentRepo.findAll();
+		assertThat(comments, containsInAnyOrder(testComment1, testComment2));
+		Optional<Comment> testComment1Result = commentRepo.findById(testComment1Id);
+		testComment1 = testComment1Result.get();
+		Optional<Comment> testComment2Result = commentRepo.findById(testComment2Id);
+		testComment2 = testComment2Result.get();
+		Optional<Review> reviewResult = reviewRepo.findById(reviewId);
+		book1 = reviewResult.get();
+		assertThat(testComment1.getCommentAuthor(), is("comment author"));
+		assertThat(testComment2.getCommentAuthor(), is("comment author2"));
+		assertThat(testComment1.getReview(), is(book1));
+		assertThat(testComment2.getReview(), is(book1));
+		assertThat(book1.getComments(), containsInAnyOrder(testComment1, testComment2));
+		
+	}
+	
+	
+	
+	
 }

@@ -59,7 +59,7 @@ public class ReviewController {
 		Optional<Author>author = authorRepo.findById(id);
 		if (author.isPresent()) {
 			model.addAttribute("author", author.get());
-			//model.addAttribute("reviews", reviewRepo.findByAuthorContains(author.get()));
+			model.addAttribute("reviews", reviewRepo.findByAuthorContains(author.get()));
 			return "author";
 		}
 		throw new AuthorNotFoundException();
@@ -70,4 +70,6 @@ public class ReviewController {
 		return "authors";
 	}
 	
+	
+		
 }

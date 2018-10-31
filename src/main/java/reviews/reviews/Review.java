@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -22,13 +23,16 @@ public class Review {
 	private String title;
 	
 	@Lob
-	private String review;
+	private String reviewText;
 	
 	@ManyToMany
 	private Collection<Genre> genres;
 	
 	@ManyToOne
 	private Author author;
+	
+	@OneToMany(mappedBy="review")
+	private Collection<Comment> comments;
 
 	private String imageUrl;
 	
@@ -43,11 +47,14 @@ public class Review {
 	public String getTitle(){
 		return title;
 	}
-	public String getReview() {
-		return review;
+	public String getReviewText() {
+		return reviewText;
 	}
 	public long getId() {
 		return id;
+	}
+	public Collection<Comment> getComments() {
+		return comments;
 	}
 	public Collection <Genre> getGenres(){
 		return genres;
@@ -56,11 +63,18 @@ public class Review {
 	public Review() {
 		
 	}
-	public Review(String title, String review, String imageUrl, Genre...genres) {
+	public Review(String title, String reviewText, String imageUrl, Genre...genres) {
 		this.title = title;
-		this.review = review;
+		this.reviewText = reviewText;
 		this.imageUrl = imageUrl;
 		this.genres = new HashSet<>(Arrays.asList(genres));
+	}
+	public void addGenre(Genre newGenre) {
+		genres.add(newGenre);
+	}
+	
+	public void removeGenre(Genre genreToRemove) {
+		genres.remove(genreToRemove);
 	}
 	@Override
 	public int hashCode() {
@@ -82,5 +96,7 @@ public class Review {
 			return false;
 		return true;
 	}
+
+
 
 }

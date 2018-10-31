@@ -8,4 +8,6 @@ public interface GenreRepository extends CrudRepository<Genre, Long> {
 
 	Collection<Genre> findByReviewsContains(Review review);
 
+	Genre findByNameIgnoreCaseLike(String name);
+
 }
