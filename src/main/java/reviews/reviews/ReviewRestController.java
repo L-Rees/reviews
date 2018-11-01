@@ -30,14 +30,16 @@ public class ReviewRestController {
 	public Optional <Review> findOneReview(@PathVariable long id){
 		return reviewRepo.findById(id);
 	}
-	@RequestMapping("/genres/{genreName}")
-	public Collection <Review> findAllReviewsByGenre(@PathVariable(value="genreName") String genreName){
-		Genre genre = genreRepo.findByNameIgnoreCaseLike(genreName);
+	@RequestMapping("/genres/{genreId}")
+	public Collection <Review> findAllReviewsByGenre(@PathVariable(value="genreId") long genreId){
+		Optional<Genre> genreResult = genreRepo.findById(genreId);
+		Genre genre = genreResult.get();
 		return reviewRepo.findByGenresContains(genre);
 	}
-	@RequestMapping("/authors/{authorName}")
-	public Collection <Review> findAllReviewsByAuthor(@PathVariable(value="authorName") String authorName){
-		Author author = authorRepo.findByNameIgnoreCaseLike(authorName);
+	@RequestMapping("/authors/{authorId}")
+	public Collection <Review> findAllReviewsByAuthor(@PathVariable(value="authorId") long authorId){
+		Optional<Author> authorResult = authorRepo.findById(authorId);
+		Author author = authorResult.get();
 		return reviewRepo.findByAuthorContains(author);
 	}
 	

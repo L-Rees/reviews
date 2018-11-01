@@ -38,45 +38,39 @@
 				<form method="POST">
 					<input name="reviewId" type="hidden" th:value="${review.id}"/>
 					<div th:each= "genre: ${genres}">
-						<h3><a class="genre-list-item" th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a><button id="x" name="genreId" th:value="${genre.id}" th:formaction="@{/remove-genre-button}">&times;</button></h3>
+						<h3><a class="genre-list-item" th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a><button class="x" name="genreId" title="delete this genre" th:value="${genre.id}" th:formaction="@{/remove-genre-button}">&times;</button></h3>
 					</div>
 				</form>
-				
 				<form method="POST">
 					<input name="reviewId" type="hidden" th:value="${review.id}"/>
 					<input name="name" type="text">
 					<button th:formaction="@{/add-genre}">Add Genre</button>
 				</form>
-				
-			
-			<h2>My Take On It</h2>
+				<h2>My Take On It</h2>
 				<p class="review" th:utext= "${review.reviewText}"></p>
+				<section id="comments">
+					<h2>Your Comments</h2>
+					<div class="add-comment">
+						<form method="POST">
+							<input type="text" name="commentAuthor" placeholder="Your name"/>
+							<input id="comment-field" type="text" name="commentText" placeholder="What's on your mind?"/>
+							<input type="hidden" th:value="${review.id}" name="reviewId"/>
+							<button th:formaction= "@{/add-comment}">Add Comment</button>
+						</form>
+					</div>
+					<article class="comment" th:each="comment: ${review.comments}">
+						<div class="del-comment">
+							<form method="POST">
+								<input type="hidden" th:value="${comment.id}" name="commentId"/>
+								<input type="hidden" th:value="${review.id}" name="reviewId"/>
+								<h4><span th:text="${comment.commentAuthor}"></span><button class="x" title="delete this comment" th:formaction= "@{/del-comment}">&times;</button></h4>
+							</form>
+						</div>
+						<p th:text="${comment.commentText}"></p>
+					</article>
+				</section>
 			</section>
 		</article>
-		<section id="comments">
-			<div class="add-comment">
-				<form method="POST">
-					<section>
-						<label>Enter your name</label>
-						<input type="text" name="commentAuthor"/>
-					</section>
-					<section>
-						<label>What's on your mind?</label>
-						<input type="text" name="commentText"/>
-					</section>
-					<section>
-						<input type="hidden" th:value="${review.id}" name="reviewId"/>
-					</section>
-					<section>
-						<button th:formaction= "@{/add-comment}">Add Comment</button>
-					</section>
-				</form>
-			</div>
-			<div th:each="comment: ${review.comments}">
-				<h4 th:text="${comment.commentAuthor}"></h4>
-				<p th:text="${comment.commentText}"></p>
-			</div>
-		</section>
 	</main>
 	
 </body>

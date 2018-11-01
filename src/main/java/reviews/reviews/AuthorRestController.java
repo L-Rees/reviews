@@ -30,9 +30,10 @@ public class AuthorRestController {
 	public Optional<Author> findOneAuthor(@PathVariable long id){
 		return authorRepo.findById(id);
 	}
-	@RequestMapping("/{authorName}/reviews")
-	public Collection<Review> findAllReviewsByAuthor(@PathVariable(value="authorName") String authorName){
-		Author author = authorRepo.findByNameIgnoreCaseLike(authorName);
+	@RequestMapping("/{id}/reviews")
+	public Collection<Review> findAllReviewsByAuthor(@PathVariable(value="authorId") long authorId){
+		Optional<Author> authorResult = authorRepo.findById(authorId);
+		Author author = authorResult.get();
 		return reviewRepo.findByAuthorContains(author);
 	}
 	

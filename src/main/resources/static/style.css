@@ -29,7 +29,19 @@ article .book-image {
 .book p {
 	text-align: center;
 }
-
+button {
+	color: #b2b7ba;
+	border: none;
+	background-color: white; 
+	padding: .5em;
+}
+button:hover {
+	background-color: #fb9b2b;
+	color: white;
+}
+#comment-field {
+	padding: 2em .3em;
+}
 .genre-list-item {
 	font-family: 'Share', cursive;
 	font-size: 100%;
@@ -41,7 +53,7 @@ article .book-image {
 #header p {
 	color: white;
 }
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	font-family: 'Share Tech', sans-serif;
 }
 
@@ -52,7 +64,7 @@ h2 {
 	color: #fb9b2b;
 	font-weight: normal;
 }
-h3{
+h3 {
 	font-weight: normal;
 }
 h1 {
@@ -66,8 +78,20 @@ h1 {
     margin-inline-end: 0px;
     font-weight: normal;
 }
+h4 {
+	margin-bottom: 0; 
+
+} 
+input[type=text] {
+	border: 1px solid #b2b7ba;
+	margin-bottom: 1em;
+	padding: .3em;
+}
 .list {
 	padding-left: 1em;
+}
+main {
+	margin-bottom: 5em;
 }
 nav {
 	padding-bottom: .5em;

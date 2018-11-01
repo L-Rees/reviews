@@ -24,6 +24,10 @@ public class CommentController {
 		commentRepo.save(newComment);
 		return "redirect:/review?id=" + reviewId;
 	}
-	
+	@RequestMapping("/del-comment")
+	public String deleteComment(Long commentId, Long reviewId) {
+		commentRepo.deleteById(commentId);
+		return "redirect:/review?id=" + reviewId;
+	}
 	
 }

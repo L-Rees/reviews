@@ -2,6 +2,15 @@ article{
 	display: grid;
 	grid-template-columns: 1fr 3fr;
 }
+.add-comment form{
+	display: flex;
+	flex-direction: column;
+}
+.comment {
+	display: flex;
+	flex-direction: column;
+
+}
 .book{
 	display: flex;
 	flex-direction: column;

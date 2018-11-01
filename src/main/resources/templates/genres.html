@@ -30,12 +30,13 @@
 			<a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a>
 		</h3>
 	</div>
+	<h2>Add or Remove a Genre</h2>
 	<section class="add-genre">
-		<input type="text"/>
+		<input type="text" placeholder="genre name"/>
 		<button>Submit Genre</button>
 	</section>
 	<section class="remove-genre">
-		<input type="text"/>
+		<input type="text" placeholder="genre name"/>
 		<button>Remove Genre</button>
 	</section>
 	<script src="./js/server-requests.js"></script>
