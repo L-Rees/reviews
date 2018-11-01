@@ -1,18 +1,18 @@
 const genreAddButton = document.querySelector(".add-genre button");
 const genreAddInput = document.querySelector(".add-genre input");
-const genresList = document.querySelector(".genres-list ul");
+const genresList = document.querySelector("#genres-list");
 const genreRemoveButton = document.querySelector(".remove-genre button");
 const genreRemoveInput = document.querySelector(".remove-genre input");
 
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
     if (xhr.readyState === 4 && xhr.status === 200){
-        const res=xhr.responseText;
+        const res = xhr.responseText;
         genresList.innerHTML = res;
     }
 }
 genreAddButton.addEventListener("click", function(){
-    postGenres(genreAddInput.value);
+    postGenre(genreAddInput.value);
     genreAddInput.value= "";
 })
 
@@ -25,7 +25,7 @@ genreRemoveButton.addEventListener("click", function(){
    
 })
 
-function postGenres(genreName){
+function postGenre(genreName){
     xhr.open("POST", "/genres/" + genreName, true);
     xhr.send();
 }

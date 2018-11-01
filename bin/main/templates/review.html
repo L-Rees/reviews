@@ -35,21 +35,19 @@
 				<h2>Author</h2>
 					<h3><a class="author-name" th:href="@{/author(id=${author.id})}" th:text="${author.name}"></a></h3>
 				<h2>Genres</h2>
-				<div th:each= "genre: ${genres}">
-					<h3><a class="genre-list-item" th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a></h3>
-				</div>
+				<form method="POST">
+					<input name="reviewId" type="hidden" th:value="${review.id}"/>
+					<div th:each= "genre: ${genres}">
+						<h3><a class="genre-list-item" th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a><button id="x" name="genreId" th:value="${genre.id}" th:formaction="@{/remove-genre-button}">&times;</button></h3>
+					</div>
+				</form>
+				
 				<form method="POST">
 					<input name="reviewId" type="hidden" th:value="${review.id}"/>
 					<input name="name" type="text">
 					<button th:formaction="@{/add-genre}">add tag with html forms</button>
 				</form>
-				<form method="POST">
-					<input name="reviewId" type="hidden" th:value="${review.id}"/>
-					<ul>
-						<li th:each="genre: ${review.genres}"><span th:text="${genre.name}"></span>
-						<button id="x" name="genreId" th:value="${genre.id}" th:formaction="@{/remove-genre-button}">&times;</button></li>
-					</ul>
-				</form>
+				
 			
 			<h2>My Take On It</h2>
 				<p class="review" th:utext= "${review.reviewText}"></p>

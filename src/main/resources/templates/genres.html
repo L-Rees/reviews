@@ -24,9 +24,20 @@
 		</nav>
 	</header>
 	
-	<div class="list" th:each= "genre: ${genres}">
-		<h3><a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a></h3>
+	<div id="genres-list" class="list">
+		<h3 th:if="${genres.size() ==0}">There are currently no genres</h3>
+		<h3 th:if="${genres.size() !=0}" th:each="genre: ${genres}">
+			<a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a>
+		</h3>
 	</div>
-
+	<section class="add-genre">
+		<input type="text"/>
+		<button>Submit Genre</button>
+	</section>
+	<section class="remove-genre">
+		<input type="text"/>
+		<button>Remove Genre</button>
+	</section>
+	<script src="./js/server-requests.js"></script>
 </body>
 </html>

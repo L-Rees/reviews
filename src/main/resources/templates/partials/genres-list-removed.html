@@ -1,5 +1,4 @@
-<h3>A genre has been removed via AJAX request</h3>
-<h4>This is the updated list of genres</h4>
-<li th:each="genre: ${genres}">
+<h2>This is the updated list of genres</h2>
+<h3 th:each="genre: ${genres}">
 	<a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a>
-</li>
+</h3>

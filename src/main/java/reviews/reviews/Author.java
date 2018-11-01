@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -22,7 +24,7 @@ public class Author {
 	
 	private String name;
 
-	
+	@JsonIgnore
 	@OneToMany
 	private Collection<Review> reviews;
 	
