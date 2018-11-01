@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -25,7 +25,7 @@ public class GenreController {
 	private AuthorRepository authorRepo;
 	
 	@RequestMapping("/add-genre")
-	public String addGenre(@RequestParam(value="reviewId")Long reviewId, String name) {
+	public String addGenre(long reviewId, String name) {
 		Genre newGenre = genreRepo.findByNameIgnoreCaseLike(name);
 		if (newGenre==null) {
 			newGenre = new Genre(name);
@@ -43,7 +43,7 @@ public class GenreController {
 	}
 	
 	@RequestMapping("/remove-genre-button")
-	public String removeGenreButton(@RequestParam Long genreId, @RequestParam Long reviewId) {
+	public String removeGenreButton(long genreId, long reviewId) {
 		Optional<Genre> genreToRemoveResult = genreRepo.findById(genreId);
 		Genre genreToRemove = genreToRemoveResult.get();
 		Optional<Review> reviewResult = reviewRepo.findById(reviewId);
