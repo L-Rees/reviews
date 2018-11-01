@@ -1,4 +1,0 @@
-<h2>This is the updated list of genres</h2>
-<h3 th:each="genre: ${genres}">
-	<a th:href="@{/genre(id=${genre.id})}" th:text="${genre.name}"></a>
-</h3>

@@ -55,12 +55,7 @@ public class GenreController {
 		
 		return "redirect:/review?id=" + reviewId;
 	}
-	//show genres with Java and Thymeleaf
-	@RequestMapping("/all-genres-ajax")
-	public String showAllGenres(Model model) {
-		model.addAttribute("genres", genreRepo.findAll());
-		return "genresAjax";
-	}
+
 	//use ajax to add genres to the database
 	@RequestMapping(path="/genres/{genreName}", method = RequestMethod.POST)
 	public String AddGenre(@PathVariable String genreName, Model model) {
@@ -70,7 +65,7 @@ public class GenreController {
 			genreRepo.save(genreToAdd);
 		}
 		model.addAttribute("genres", genreRepo.findAll());
-		return "partials/genres-list-added";
+		return "partials/genres-list";
 	}
 	
 	//Use ajax to remove genres from the database
@@ -85,6 +80,6 @@ public class GenreController {
 		}
 		genreRepo.delete(genreToDelete);
 		model.addAttribute("genres", genreRepo.findAll());
-		return "partials/genres-list-removed";
+		return "partials/genres-list";
 	}
 }
