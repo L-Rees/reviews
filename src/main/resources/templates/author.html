@@ -29,12 +29,12 @@
 	
 		<h2 th:text="${author.name}"></h2>
 		<h3>Books by this author</h3>
-			<div th:each= "review: ${author.reviews}">
-				<ul>
-					<li><a class="book-title" th:href="@{/review(id=${review.id})}" th:text="${review.title}"></a></li>
-				</ul>
-			</div>
-		
+			<section class="reviews">
+				<div class="book" th:each= "review: ${author.reviews}">
+					<img class="book-image" th:src="${review.imageUrl}">
+					<p><a th:href="@{/review(id=${review.id})}" th:text="${review.title}" class="book-title"></a></p>
+				</div>
+			</section>
 
 
 </body>
