@@ -8,6 +8,9 @@ a:hover {
 nav a:hover {
 	color: white;
 }
+blockquote {
+	font-family: 'Share', cursive;
+}
 body {
 	margin: auto;
 	width: 90%;
@@ -40,7 +43,10 @@ button:hover {
 	color: white;
 }
 #comment-field {
-	padding: 2em .3em;
+	height: 5em;
+}
+.comment p {
+	margin-block-start: 0;
 }
 .genre-list-item {
 	font-family: 'Share', cursive;
