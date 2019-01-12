@@ -12,10 +12,10 @@ public class CommentController {
 
 	@Resource
 	private CommentRepository commentRepo;
-	
+
 	@Resource
 	private ReviewRepository reviewRepo;
-	
+
 	@RequestMapping("/add-comment")
 	public String addComment(String commentAuthor, Long reviewId, String commentText) {
 		Optional<Review> reviewResult = reviewRepo.findById(reviewId);
@@ -24,10 +24,11 @@ public class CommentController {
 		commentRepo.save(newComment);
 		return "redirect:/review?id=" + reviewId;
 	}
+
 	@RequestMapping("/del-comment")
 	public String deleteComment(Long commentId, Long reviewId) {
 		commentRepo.deleteById(commentId);
 		return "redirect:/review?id=" + reviewId;
 	}
-	
+
 }

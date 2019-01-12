@@ -11,41 +11,40 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-
-
-
 @Entity
 public class Author {
 
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	private String name;
 
 	@JsonIgnore
 	@OneToMany
 	private Collection<Review> reviews;
-	
-	public Collection<Review> getReviews(){
+
+	public Collection<Review> getReviews() {
 		return reviews;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public Author() {
-		
+
 	}
-	public Author(String name, Review...reviews) {
+
+	public Author(String name, Review... reviews) {
 		this.name = name;
 		this.reviews = new HashSet<>(Arrays.asList(reviews));
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -53,6 +52,7 @@ public class Author {
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -67,6 +67,4 @@ public class Author {
 		return true;
 	}
 
-
-	
 }

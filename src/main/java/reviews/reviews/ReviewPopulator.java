@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ReviewPopulator implements CommandLineRunner {
+	
 	@Resource
 	private ReviewRepository reviewRepo;
 
@@ -20,7 +21,7 @@ public class ReviewPopulator implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		Genre sf = genreRepo.save(new Genre("science fiction"));
-		
+
 		Genre memoir = genreRepo.save(new Genre("memoir"));
 		Genre nonfiction = genreRepo.save(new Genre("non-fiction"));
 		Genre mystery = genreRepo.save(new Genre("mystery"));
